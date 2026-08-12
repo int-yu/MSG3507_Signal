@@ -14,4 +14,5 @@ jobs:
       - run: gcc -std=c11 -Wall -Wextra -Werror -Iinclude src/sigq15.c backends/sigq15_backends.c tests/test_signal.c -o /tmp/test_signal
       - run: /tmp/test_signal
       - run: gcc -std=c11 -Wall -Wextra -Werror -Iinclude src/sigq15.c examples/synthetic_demo.c -o /tmp/demo
+      - run: python -m pytest tests/test_api_docs.py -q
       - run: pytest -q

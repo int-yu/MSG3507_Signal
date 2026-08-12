@@ -38,3 +38,6 @@ TI Arm Clang 目标语法命令见 docs/TI_BUILD.md。
 - CMSIS 后端定义 SIGQ15_USE_CMSIS_DSP；MATHACL 后端须真机补齐并验证事务。
 
 MIT License。
+## 详细 API 手册
+
+推荐先读 [API 参考](docs/API.md)，再按 [固定点调用教程](docs/API_USAGE.md) 的四个可编译示例实践：预处理、测量频域、跟踪自适应与可选后端。实时例程只用静态工作区和定点整数；硬件边界见 [接线说明](docs/WIRING.md)。
