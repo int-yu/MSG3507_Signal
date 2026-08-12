@@ -1,0 +1,15 @@
+Debug/
+Release/
+.settings/
+.metadata/
+*.launch
+*.exe
+*.obj
+*.o
+*.out
+*.map
+__pycache__/
+.pytest_cache/
+*.pyc
+generated/
+tests/syscfg_verify/

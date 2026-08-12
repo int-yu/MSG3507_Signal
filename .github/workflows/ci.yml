@@ -1,0 +1,18 @@
+name: host-ci
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install numpy scipy pytest
+      - run: gcc -std=c11 -Wall -Wextra -Werror -Iinclude src/sigq15.c backends/sigq15_backends.c tests/test_signal.c -o /tmp/test_signal
+      - run: /tmp/test_signal
+      - run: gcc -std=c11 -Wall -Wextra -Werror -Iinclude src/sigq15.c examples/synthetic_demo.c -o /tmp/demo
+      - run: pytest -q

@@ -1,0 +1,13 @@
+/**
+ * MSPM0G3507 64-pin PM bare-device configuration.
+ * Open this file with the CCS SysConfig graphical editor.
+ */
+//@cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+ProjectConfig.deviceSpin = "MSPM0G3507";
+

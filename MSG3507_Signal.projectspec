@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context deviceFamily="ARM" deviceId="MSPM0G3507" />
+        </when>
+    </applicability>
+
+    <project
+        title="MSG3507_Signal"
+        name="MSG3507_Signal"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G3507"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/include
+            -I${PROJECT_ROOT}/${ConfigName}
+            -O2
+            @syscfg/device.opt
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -ldevice.cmd.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="MSPM0G3507 fixed-point signal processing library with SysConfig shell">
+
+        <property name="buildProfile" value="release" />
+        <property name="isHybrid" value="true" />
+        <file path="main.c" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="src/sigq15.c" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="backends/sigq15_backends.c" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="include/sigq15.h" openOnCreation="false" excludeFromBuild="true" action="copy" />
+        <file path="include/sigq15_backends.h" openOnCreation="false" excludeFromBuild="true" action="copy" />
+        <file path="main.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy" />
+        <file path="README.md" openOnCreation="false" excludeFromBuild="true" action="copy" />
+    </project>
+</projectSpec>
+
